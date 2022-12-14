@@ -9,6 +9,7 @@
 /.next/
 /out/
 
+
 # production
 /build
 
@@ -16,3 +17,5 @@
 # others
 /code-stages
 /scripts
+
+/stories

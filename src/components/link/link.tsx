@@ -22,12 +22,12 @@ const variants = {
   },
 };
 
-export type LinkProps = {
+export type LinkProps = PropsWithChildren<{
   href: string;
   variant?: keyof typeof variants;
   icon?: JSX.Element;
   shallow?: boolean;
-};
+}>;
 
 export const Link = ({
   href,
@@ -35,7 +35,7 @@ export const Link = ({
   icon,
   shallow = false,
   variant = 'link',
-}: PropsWithChildren<LinkProps>) => {
+}: LinkProps) => {
   return (
     <NextLink shallow={shallow} href={href} passHref>
       <Button leftIcon={icon} {...variants[variant]}>
