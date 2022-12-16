@@ -132,12 +132,6 @@ export const getUser = delayedFn(
 );
 
 export const getOrganization = delayedFn((id: string) => {
-  console.log(
-    testData.organizations.find((o) => {
-      console.log(o.id, id, o.id === id);
-      return o.id === id;
-    })
-  );
   const data =
     testData.organizations.find((o) => o.id === id) ||
     null;

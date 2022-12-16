@@ -7,7 +7,7 @@ import { ReactElement } from 'react';
 
 import { NotFound } from '@/components/not-found';
 import { Seo } from '@/components/seo';
-import { JobsList, Job } from '@/features/jobs';
+import { JobsList } from '@/features/jobs';
 import { OrganizationInfo } from '@/features/organizations';
 import { PublicLayout } from '@/layouts/public-layout';
 import {
@@ -67,7 +67,6 @@ export const getServerSideProps = async ({
     getJobs(organizationId).catch(() => []),
   ]);
 
-  console.log({ organization, jobs, organizationId });
   return {
     props: {
       organization,
