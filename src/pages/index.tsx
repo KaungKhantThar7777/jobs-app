@@ -1,7 +1,10 @@
-import { Center } from '@chakra-ui/react';
+import {
+  Center,
+  Heading,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
 
-import { Button } from '@/components/button';
-import { InputField } from '@/components/form';
 import { Link } from '@/components/link/';
 import { Seo } from '@/components/seo';
 
@@ -9,14 +12,21 @@ const LandingPage = () => {
   return (
     <>
       <Seo title="Jobs App" />
-      <Center>
-        <Button type="button" variant="solid">
-          Click Me
-        </Button>
-        <br />
-        <br />
-        <InputField label="Name" />
-        <Link href="/home">Home</Link>
+      <Center flexDirection="column" h="full">
+        <VStack maxW="3xl" spacing="8">
+          <Heading size="3xl">Jobs App</Heading>
+          <Text
+            fontSize={{ base: 'lg', md: 'xl' }}
+            maxW="2xl"
+            color="muted"
+          >
+            Manage your careers page
+          </Text>
+
+          <Link href="/dashboard/jobs" variant="solid">
+            Get Started
+          </Link>
+        </VStack>
       </Center>
     </>
   );
