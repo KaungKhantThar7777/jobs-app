@@ -43,7 +43,7 @@ const getTableColumns = (
             href={
               type === 'public'
                 ? `/organizations/${organizationId}/jobs/${id}`
-                : `/dashboard/${id}`
+                : `/dashboard/jobs/${id}`
             }
           >
             View
