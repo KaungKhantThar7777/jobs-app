@@ -1,3 +1,8 @@
+// components
+export * from './components/protected';
+export * from './components/login-form';
+
+// types
 export * from './types';
 
 // api

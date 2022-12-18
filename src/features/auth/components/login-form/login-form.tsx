@@ -53,6 +53,7 @@ export const LoginForm = ({
       <Button
         isLoading={login.isLoading}
         isDisabled={login.isLoading}
+        type="submit"
       >
         Log in
       </Button>

@@ -10,7 +10,11 @@ import { PropsWithChildren } from 'react';
 
 import { Button } from '@/components/button';
 import { Link } from '@/components/link';
-import { useAuthUser, useLogout } from '@/features/auth';
+import {
+  useAuthUser,
+  useLogout,
+  Protected,
+} from '@/features/auth';
 
 export const DashboardLayout = ({
   children,
@@ -18,20 +22,22 @@ export const DashboardLayout = ({
   const user = useAuthUser();
 
   return (
-    <Box as="section" h="100vh" overflowY="auto">
-      <Navbar />
-      <Container as="main" maxW="container.lg" py="12">
-        {children}
-      </Container>
+    <Protected>
+      <Box as="section" h="100vh" overflowY="auto">
+        <Navbar />
+        <Container as="main" maxW="container.lg" py="12">
+          {children}
+        </Container>
 
-      <Box py="8" textAlign="center">
-        <Link
-          href={`/organizations/${user.data?.organizationId}`}
-        >
-          View Public Organization Page
-        </Link>
+        <Box py="8" textAlign="center">
+          <Link
+            href={`/organizations/${user.data?.organizationId}`}
+          >
+            View Public Organization Page
+          </Link>
+        </Box>
       </Box>
-    </Box>
+    </Protected>
   );
 };
 
