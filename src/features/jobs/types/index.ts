@@ -8,7 +8,7 @@ export type Job = Entity & {
   department: string;
 };
 
-export type CreateJobDate = Pick<
+export type CreateJobData = Pick<
   Job,
   'position' | 'department' | 'location' | 'info'
 >;
