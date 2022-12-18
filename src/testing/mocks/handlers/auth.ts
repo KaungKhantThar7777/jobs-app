@@ -44,11 +44,11 @@ const logoutHandler = rest.post(
   }
 );
 
-const meHandler = rest.post(
+const meHandler = rest.get(
   `${API_URL}/auth/me`,
   async (req, res, ctx) => {
     const user = requireAuth({ req, showThrow: false });
-    return res(ctx.delay(300), ctx.json({ user }));
+    return res(ctx.delay(300), ctx.json(user));
   }
 );
 

@@ -5,13 +5,14 @@ import { ReactElement } from 'react';
 import { Link } from '@/components/link';
 import { Loading } from '@/components/loading';
 import { Seo } from '@/components/seo';
+import { useAuthUser } from '@/features/auth';
 import { JobsList, useJobs } from '@/features/jobs';
 import { DashboardLayout } from '@/layouts/dashboard-layout';
-import { useUser } from '@/testing/test-data';
 
 const DashboardJobsPage = () => {
-  const user = useUser();
+  const user = useAuthUser();
 
+  console.log({ user }, user.data?.organizationId);
   const jobs = useJobs({
     params: {
       organizationId: user.data?.organizationId,

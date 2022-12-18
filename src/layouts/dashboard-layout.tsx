@@ -5,16 +5,17 @@ import {
   Flex,
   HStack,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { PropsWithChildren } from 'react';
 
 import { Button } from '@/components/button';
 import { Link } from '@/components/link';
-import { useUser } from '@/testing/test-data';
+import { useAuthUser, useLogout } from '@/features/auth';
 
 export const DashboardLayout = ({
   children,
 }: PropsWithChildren) => {
-  const user = useUser();
+  const user = useAuthUser();
 
   return (
     <Box as="section" h="100vh" overflowY="auto">
@@ -35,6 +36,10 @@ export const DashboardLayout = ({
 };
 
 const Navbar = () => {
+  const router = useRouter();
+  const logout = useLogout({
+    onSuccess: () => router.push('/auth/login'),
+  });
   return (
     <Box as="nav" bg="primary" color="primaryAccent">
       <Container maxW="container.lg" size="3xl" py="3">
@@ -56,9 +61,9 @@ const Navbar = () => {
           <HStack>
             <Button
               variant="outline"
-              onClick={() => {
-                console.log('Logging out...');
-              }}
+              isDisabled={logout.isLoading}
+              isLoading={logout.isLoading}
+              onClick={() => logout.submit()}
             >
               Log out
             </Button>
