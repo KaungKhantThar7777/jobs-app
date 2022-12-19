@@ -12,7 +12,6 @@ import { DashboardLayout } from '@/layouts/dashboard-layout';
 const DashboardJobsPage = () => {
   const user = useAuthUser();
 
-  console.log({ user }, user.data?.organizationId);
   const jobs = useJobs({
     params: {
       organizationId: user.data?.organizationId,

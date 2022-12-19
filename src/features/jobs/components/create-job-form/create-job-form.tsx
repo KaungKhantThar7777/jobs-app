@@ -23,6 +23,7 @@ export const CreateJobForm = ({
   const onSubmit = (data: CreateJobData) => {
     createJob.submit({ data });
   };
+
   return (
     <Box>
       <Stack
@@ -33,23 +34,29 @@ export const CreateJobForm = ({
       >
         <InputField
           label="Position"
-          {...register('position', { required: true })}
+          {...register('position', {
+            required: 'Required',
+          })}
           error={formState.errors['position']}
         />
         <InputField
           label="Department"
-          {...register('department', { required: true })}
+          {...register('department', {
+            required: 'Required',
+          })}
           error={formState.errors['department']}
         />
         <InputField
           label="Location"
-          {...register('location', { required: true })}
+          {...register('location', {
+            required: 'Required',
+          })}
           error={formState.errors['location']}
         />
         <InputField
           type="textarea"
           label="Info"
-          {...register('info', { required: true })}
+          {...register('info', { required: 'Required' })}
           error={formState.errors['info']}
         />
 

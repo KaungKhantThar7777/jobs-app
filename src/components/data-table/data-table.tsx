@@ -69,7 +69,10 @@ export const DataTable = <Entry extends Entity>({
 
           <Tbody>
             {data?.map((entry, entryIndex) => (
-              <Tr key={entry.id || entryIndex}>
+              <Tr
+                key={entry.id || entryIndex}
+                data-testid={`table-row-${entryIndex}`}
+              >
                 {columns.map(
                   (
                     { field, title, render },

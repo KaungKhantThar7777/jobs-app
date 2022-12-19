@@ -68,7 +68,7 @@ export const JobsList = ({
   );
 
   return (
-    <Box>
+    <Box data-testid="jobs-list">
       <DataTable
         columns={tableColumns}
         isLoading={isLoading || false}
