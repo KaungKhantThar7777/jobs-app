@@ -9,7 +9,6 @@ const getOrganizationHandler = rest.get(
   (req, res, ctx) => {
     const organizationId = req.params
       .organizationId as string;
-
     const organization = db.organization.findFirst({
       where: {
         id: {

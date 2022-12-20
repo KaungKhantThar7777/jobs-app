@@ -17,9 +17,6 @@ const customJestConfig = {
     '<rootDir>/cypress/',
     '<rootDir>/code-stages/',
   ],
-  global: {
-    IS_REACT_ACT_ENVIRONMENT: true,
-  },
 };
 
 module.exports = createJestConfig(customJestConfig);
