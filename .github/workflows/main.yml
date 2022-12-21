@@ -6,7 +6,7 @@ jobs:
     name: Code Checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -18,8 +18,9 @@ jobs:
   e2e:
     name: E2E Tests
     runs-on: ubunt-latest
-    - uses: cypress-io/github-actions@v4
-      with:
-        build: npm run build
-        start: npm run start
-
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cypress-io/github-actions@v4
+        with:
+          build: npm run build
+          start: npm run start
