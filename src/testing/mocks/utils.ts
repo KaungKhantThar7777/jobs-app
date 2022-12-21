@@ -58,7 +58,8 @@ export const requireAuth = ({
     return getUser();
   } else {
     const encodedToken = req.cookies[AUTH_COOKIE];
-
+    console.log(req.cookies);
+    console.log({ encodedToken });
     if (encodedToken !== AUTH_TOKEN) {
       if (showThrow) {
         throw new Error(
