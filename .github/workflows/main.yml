@@ -24,37 +24,3 @@ jobs:
         with:
           build: npm run build
           start: npm run start
-  deploy:
-    name: Deploy To Vercel
-    runs-on: ubuntu-latest
-    needs: ['code-checks', 'e2e']
-    if: github.repository_owner == 'kaungkhantthar7777'
-    permissions:
-      contents: read
-      deployments: write
-    steps:
-      - name: start deployment
-        uses: bobheadxi/deployments@v1
-        id: deployment
-        with:
-          step: start
-          token: ${{secrets.GITHUB_TOKEN}}
-          env: ${{fromJSON('["Production"."Preview"]')[github.href != 'refs/heads/master']  }}
-      - uses: actions/checkout@v3
-      - uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{secrets.VERCEL_TOKEN}}
-          vercel-args: ${{ fromJSON('["--prod", ""]')[github.ref != 'refs/heads/master'] }}
-          vercel-org-id: ${{secrets.VERCEL_ORG_ID}}
-          vercel-project-id: ${{secrets.VERCEL_PROJECT_ID}}
-          scope: ${{secrets.VERCEL_ORG_ID}}
-          working-directory: ./
-      - name: finish deployment
-        uses: bobheadxi/deployments@v1
-        if: always()
-        with:
-          step: finish
-          token: ${{secrets.GITHUB_TOKEN}}
-          status: ${{job.status}}
-          env: ${{steps.deployment.outputs.env}}
-          deployment_id: ${{steps.deployment.outputs.deployment_id}}
