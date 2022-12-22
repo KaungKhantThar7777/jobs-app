@@ -41,7 +41,7 @@ jobs:
           token: ${{secrets.GITHUB_TOKEN}}
           env: ${{fromJSON('["Production"."Preview"]')[github.href != 'refs/heads/master']  }}
       - uses: actions/checkout@v3
-      - uses: amondent/vercel-action@v25
+      - uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{secrets.VERCEL_TOKEN}}
           vercel-args: ${{ fromJSON('["--prod", ""]')[github.ref != 'refs/heads/master'] }}
