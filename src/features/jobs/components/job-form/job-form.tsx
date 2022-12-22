@@ -1,29 +1,54 @@
 import { Box, Stack } from '@chakra-ui/react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/button';
 import { InputField } from '@/components/form';
+import { Loading } from '@/components/loading';
 
-import { useCreateJob } from '../../api/create-job';
-import { CreateJobData } from '../../types';
+import { useCreateJob, useUpdateJob } from '../../api';
+import { Job, MutateJobData } from '../../types';
 
-export type CreateJobFormProps = {
+export type JobFormProps = {
   onSuccess: () => void;
+  job?: Job;
+  isLoading?: boolean;
 };
 
-export const CreateJobForm = ({
+export const CreateUpdateJobForm = ({
   onSuccess,
-}: CreateJobFormProps) => {
+  job,
+  isLoading,
+}: JobFormProps) => {
   const createJob = useCreateJob({
     onSuccess,
   });
-  const { register, handleSubmit, formState } =
-    useForm<CreateJobData>();
 
-  const onSubmit = (data: CreateJobData) => {
-    createJob.submit({ data });
+  const updateJob = useUpdateJob({
+    onSuccess,
+  });
+
+  const { register, handleSubmit, formState, reset } =
+    useForm<MutateJobData>({
+      defaultValues: { ...job },
+    });
+
+  useEffect(() => {
+    reset(job);
+  }, [job, reset]);
+
+  const onSubmit = (data: MutateJobData) => {
+    if (job) {
+      updateJob.submit({
+        jobId: job.id,
+        data,
+      });
+    } else {
+      createJob.submit({ data });
+    }
   };
 
+  if (isLoading) return <Loading />;
   return (
     <Box>
       <Stack
@@ -65,7 +90,7 @@ export const CreateJobForm = ({
           isLoading={createJob.isLoading}
           type="submit"
         >
-          Create
+          {job ? 'Update' : 'Create'}
         </Button>
       </Stack>
     </Box>

@@ -17,7 +17,11 @@ import { Loading } from '../loading';
 type DataTableColumn<Entry> = {
   title: string;
   field: keyof Entry;
-  render?: ({ entry }: { entry: Entry }) => JSX.Element;
+  render?: ({
+    entry,
+  }: {
+    entry: Entry;
+  }) => JSX.Element | null;
 };
 
 export type DataTableProps<Entry> = {

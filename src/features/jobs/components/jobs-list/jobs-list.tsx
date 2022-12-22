@@ -38,6 +38,17 @@ const getTableColumns = (
       title: '',
       field: 'id',
       render: ({ entry: { id } }) => {
+        return type === 'dashboard' ? (
+          <Link href={`/dashboard/jobs/${id}/update`}>
+            Update
+          </Link>
+        ) : null;
+      },
+    },
+    {
+      title: '',
+      field: 'id',
+      render: ({ entry: { id } }) => {
         return (
           <Link
             href={

@@ -79,8 +79,34 @@ const createJobHandler = rest.post(
   }
 );
 
+const updateJobHandler = rest.patch(
+  `${API_URL}/jobs/:jobId`,
+  async (req, res, ctx) => {
+    const jobId = req.params.jobId as string;
+    const jobData = await req.json();
+    db.job.update({
+      where: {
+        id: {
+          equals: jobId,
+        },
+      },
+      data: {
+        ...jobData,
+      },
+    });
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: 'Success',
+      })
+    );
+  }
+);
+
 export const jobsHandlers = [
   getJobsHandler,
   getJobHandler,
   createJobHandler,
+  updateJobHandler,
 ];

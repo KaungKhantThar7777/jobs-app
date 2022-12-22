@@ -14,7 +14,6 @@ export const Protected = ({
   const user = useAuthUser();
 
   useEffect(() => {
-    console.log({ user });
     if (!user.data && !user.isLoading) {
       replace(
         `/auth/login?redirect=${asPath}`,

@@ -3,10 +3,10 @@ import { useMutation } from 'react-query';
 import { apiClient } from '@/lib/api-client';
 import { queryClient } from '@/lib/react-query';
 
-import { Job, CreateJobData } from '../types';
+import { Job, MutateJobData } from '../types';
 
 type CreateJobOptions = {
-  data: CreateJobData;
+  data: MutateJobData;
 };
 
 export const createJob = ({
