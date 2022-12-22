@@ -28,10 +28,12 @@ export const CreateUpdateJobForm = ({
     onSuccess,
   });
 
-  const { register, handleSubmit, formState, reset } =
-    useForm<MutateJobData>({
-      defaultValues: { ...job },
-    });
+  const props = useForm<MutateJobData>({
+    defaultValues: { status: 'draft', ...job },
+  });
+
+  const { register, handleSubmit, reset, formState } =
+    props;
 
   useEffect(() => {
     reset(job);
@@ -78,10 +80,30 @@ export const CreateUpdateJobForm = ({
           })}
           error={formState.errors['location']}
         />
+
+        <label>
+          <input
+            type="radio"
+            value={'draft'}
+            {...register('status')}
+          />
+          Draft
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            value="publish"
+            {...register('status')}
+          />
+          Publish now
+        </label>
         <InputField
           type="textarea"
           label="Info"
-          {...register('info', { required: 'Required' })}
+          {...register('info', {
+            required: 'Required',
+          })}
           error={formState.errors['info']}
         />
 

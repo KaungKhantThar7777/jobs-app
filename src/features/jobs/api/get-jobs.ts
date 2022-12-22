@@ -7,6 +7,7 @@ import { Job } from '../types';
 type GetJobsOptions = {
   params: {
     organizationId: string | undefined;
+    type?: string;
   };
 };
 

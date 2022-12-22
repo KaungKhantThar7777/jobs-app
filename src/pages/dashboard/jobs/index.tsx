@@ -15,6 +15,7 @@ const DashboardJobsPage = () => {
   const jobs = useJobs({
     params: {
       organizationId: user.data?.organizationId,
+      type: 'dashboard',
     },
   });
 

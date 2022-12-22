@@ -11,12 +11,20 @@ const getJobsHandler = rest.get(
     const organizationId = req.url.searchParams.get(
       'organizationId'
     ) as string;
+    const type = req.url.searchParams.get('type');
 
     const jobs = db.job.findMany({
       where: {
         organizationId: {
           equals: organizationId,
         },
+        ...(type === 'dashboard'
+          ? {}
+          : {
+              status: {
+                equals: 'publish',
+              },
+            }),
       },
     });
 

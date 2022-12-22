@@ -27,6 +27,7 @@ const models = {
     info: String,
     location: String,
     department: String,
+    status: String,
   },
 };
 

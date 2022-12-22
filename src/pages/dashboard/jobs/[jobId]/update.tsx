@@ -16,7 +16,6 @@ const DashboardUpdateJobPage = () => {
   const { data, isLoading } = useJob({
     jobId: router.query.jobId as string,
   });
-  console.log({ data, isLoading });
 
   const onSuccess = () => {
     showNotification({

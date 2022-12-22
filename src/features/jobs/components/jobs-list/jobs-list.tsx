@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Badge, Box } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import {
@@ -77,6 +77,24 @@ export const JobsList = ({
     organizationId,
     type
   );
+
+  if (type === 'dashboard') {
+    tableColumns.unshift({
+      field: 'status',
+      title: 'Status',
+      render: ({ entry: { status } }) => {
+        return (
+          <Badge
+            colorScheme={
+              status === 'draft' ? 'red' : 'green'
+            }
+          >
+            {status}
+          </Badge>
+        );
+      },
+    });
+  }
 
   return (
     <Box data-testid="jobs-list">
