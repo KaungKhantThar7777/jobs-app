@@ -5,10 +5,26 @@ const organization = testData.organizations[0];
 const job = testData.jobs[0];
 
 describe('public application flow', () => {
-  it('should navigate to and display job details page', () => {
+  it('should display the organization page', () => {
     cy.visit(
       `http://localhost:3000/organizations/${organization.id}`
     );
+
+    cy.findByRole('heading', {
+      name: organization.name,
+    }).should('exist');
+
+    cy.findByRole('heading', {
+      name: organization.email,
+    }).should('exist');
+
+    cy.findByRole('heading', {
+      name: organization.phone,
+    }).should('exist');
+
+    cy.findByText(
+      new RegExp(organization.info, 'i')
+    ).should('exist');
 
     cy.findByTestId('jobs-list').should('exist');
 
@@ -32,26 +48,5 @@ describe('public application flow', () => {
     cy.findByText(new RegExp(job.info, 'i')).should(
       'exist'
     );
-  });
-  it('should display the organization page', () => {
-    cy.visit(
-      `http://localhost:3000/organizations/${organization.id}`
-    );
-
-    cy.findByRole('heading', {
-      name: organization.name,
-    }).should('exist');
-
-    cy.findByRole('heading', {
-      name: organization.email,
-    }).should('exist');
-
-    cy.findByRole('heading', {
-      name: organization.phone,
-    }).should('exist');
-
-    cy.findByText(
-      new RegExp(organization.info, 'i')
-    ).should('exist');
   });
 });
