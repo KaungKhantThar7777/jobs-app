@@ -31,7 +31,9 @@ describe('Dashboard', () => {
 
     cy.findByRole('row', {
       name: new RegExp(
-        `${job.position} ${job.department} ${job.location} View`,
+        `${job.status.toUpperCase()} ${job.position} ${
+          job.department
+        } ${job.location} Update View`,
         'i'
       ),
     }).within(() => {

@@ -10,7 +10,9 @@ import {
 
 const organization = testData.organizations[0];
 
-const jobs = testData.jobs;
+const jobs = testData.jobs.filter(
+  (job) => job.status === 'publish'
+);
 
 describe('Public Organization Page', () => {
   it('should use getServerSideProps that fetches and returns the proper data', async () => {
