@@ -6,6 +6,7 @@ import {
   DataTableProps,
 } from '@/components/data-table';
 
+import { useDeleteJob } from '../../api';
 import { Job } from '../../types';
 
 type JobListType = 'dashboard' | 'public';
@@ -45,6 +46,7 @@ const getTableColumns = (
         ) : null;
       },
     },
+
     {
       title: '',
       field: 'id',
@@ -73,6 +75,7 @@ export const JobsList = ({
   type,
   isLoading,
 }: JobsListProps) => {
+  const { submit } = useDeleteJob();
   const tableColumns = getTableColumns(
     organizationId,
     type
@@ -102,6 +105,12 @@ export const JobsList = ({
         columns={tableColumns}
         isLoading={isLoading || false}
         data={jobs}
+        deleteButton={true}
+        onConfirm={(data) => {
+          submit({
+            jobId: data.id,
+          });
+        }}
       />
     </Box>
   );

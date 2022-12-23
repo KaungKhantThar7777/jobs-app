@@ -112,9 +112,32 @@ const updateJobHandler = rest.patch(
   }
 );
 
+const deleteJobHandler = rest.delete(
+  `${API_URL}/jobs/:jobId`,
+  async (req, res, ctx) => {
+    const jobId = req.params.jobId as string;
+
+    db.job.delete({
+      where: {
+        id: {
+          equals: jobId,
+        },
+      },
+    });
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        message: 'Success',
+      })
+    );
+  }
+);
+
 export const jobsHandlers = [
   getJobsHandler,
   getJobHandler,
   createJobHandler,
   updateJobHandler,
+  deleteJobHandler,
 ];

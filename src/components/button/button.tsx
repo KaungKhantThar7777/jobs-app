@@ -1,4 +1,7 @@
-import { Button as ChakraButton } from '@chakra-ui/react';
+import {
+  ButtonProps,
+  Button as ChakraButton,
+} from '@chakra-ui/react';
 import {
   PropsWithChildren,
   MouseEventHandler,
@@ -18,22 +21,29 @@ const variants = {
     bg: 'white',
     color: 'primary',
   },
+  ghost: {
+    variant: 'ghost',
+  },
 };
-export type ButtonProps = PropsWithChildren & {
-  type?: 'button' | 'submit' | 'reset';
-  variant?: keyof typeof variants;
-  isLoading?: boolean;
-  isDisabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  icon?: JSX.Element;
-};
+export type CustomButtonProps = Omit<
+  ButtonProps,
+  'variant'
+> &
+  PropsWithChildren & {
+    type?: 'button' | 'submit' | 'reset';
+    variant?: keyof typeof variants;
+    isLoading?: boolean;
+    isDisabled?: boolean;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
+    icon?: JSX.Element;
+  };
 export const Button = ({
   variant = 'solid',
   type = 'button',
   children,
   icon,
   ...props
-}: ButtonProps) => {
+}: CustomButtonProps) => {
   return (
     <ChakraButton
       {...props}

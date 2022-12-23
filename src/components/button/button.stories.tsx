@@ -1,14 +1,14 @@
 import { PlusSquareIcon } from '@chakra-ui/icons';
 import { Story, Meta } from '@storybook/react';
 
-import { Button, ButtonProps } from './button';
+import { Button, CustomButtonProps } from './button';
 
 const meta: Meta = {
   title: 'Components/Button',
   component: Button,
 };
 
-const Template: Story<ButtonProps> = (props) => (
+const Template: Story<CustomButtonProps> = (props) => (
   <Button {...props} />
 );
 
